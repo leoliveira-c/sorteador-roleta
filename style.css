@@ -1,0 +1,176 @@
+* {
+    padding: 0;
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(/javascript/br-sorteador-v2.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+h5 {
+    text-align: center;
+    text-decoration: underline;
+    padding-bottom: 0.5em;
+}
+
+h6 {
+    font-style: italic;
+    padding-bottom: 0.5em;
+}
+
+p {
+    text-align: justify;
+    font-size: 0.9em;
+}
+
+#container-boxes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#btn-infos {
+    position: relative;
+    top: 2.4%;
+}
+
+#wrapper {
+    background-color: #ffffff;
+    position: inherit;
+    top: 50%;
+    left: 50%;
+    padding: 3em;
+    margin: 1em;
+    height: auto;
+    width: 30em;
+    border-radius: 1em;
+}
+
+.container-canvas {
+    position: relative;
+}
+
+label {
+    font-size: 14px;
+}
+
+#wheel-actions {
+    position: relative;
+    height: 30em;
+    width: 30em;
+    background-color: #fdfdfd74;
+    padding: 1em;
+    border-radius: 1em;
+    background-color: #fdfdfd74;
+}
+
+#btn-roleta {
+    position: absolute;
+    left: 65%;
+    bottom: 3%;
+}
+
+
+#spin-btn {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    height: 26%;
+    width: 26%;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 0;
+    background: radial-gradient(#fdcf3b 50%, #d88a40 85%);
+    color: #c66e16;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+}
+
+img {
+    position: absolute;
+    width: 3.5em;
+    top: 43%;
+    right: -6%;
+}
+
+
+.modal {
+    left: 0;
+    top: 100px;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    transition: opacity 0.5s;
+    top: 35%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 500px;
+}
+
+.modal.show {
+    display: block;
+    opacity: 1;
+}
+
+.fade-in {
+    animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+#modalResult {
+    padding: 30px;
+    text-align: center;
+    font-size: 30px;
+}
+
+textarea {
+    border: 2px solid #000 !important;
+    resize: none;
+    border-radius: 1em 0 1em 0;
+    border: none;
+    width: 100%;
+    height: 370px;
+}
+
+#labelsInput {
+    padding: 0.5em;
+    resize: none;
+    font-size: 15px;
+}
+
+.game-instruct {
+    font-size: 12px;
+    margin-top: 0.5em;
+}
