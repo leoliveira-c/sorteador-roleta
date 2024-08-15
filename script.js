@@ -159,7 +159,7 @@ const spinWheel = () => {
       const segmentIndex = Math.floor((360 - finalDegree) / degreesPerSegment) % numSegments;
       const selectedSegment = myChart.data.labels[segmentIndex];
 
-      document.getElementById('modalResult').innerHTML = `Parabéns, ${selectedSegment}!`;
+      document.getElementById('modalResult').innerHTML = `O resultado foi: ${selectedSegment}`;
 
       modal.style.display = "block";
       spinBtn.disabled = false;
