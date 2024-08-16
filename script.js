@@ -52,7 +52,7 @@ const createChart = (labels, data, colors) => {
           textStrokeColor: "#000000",
           textStrokeWidth: 1,
           formatter: (_, context) => context.chart.data.labels[context.dataIndex],
-          font: { size: 16 },
+          font: { size: 14 },
           align: 'start',
           anchor: 'end',
           textAlign: 'center',
@@ -70,60 +70,92 @@ const createChart = (labels, data, colors) => {
   });
 };
 
+//pouco gradiente
+// const generateColors = (numColors) => {
+//   const colors = [];
+
+//   const gradientRatio = 0.3;
+//   const solidRatio = 1 - gradientRatio;
+//   const third = Math.floor(numColors / 3);
+//   const remainder = numColors % 3;
+
+//   const getColor = (start, end, ratio) => {
+//     const hue = start + (end - start) * ratio;
+//     return `hsl(${hue}, 100%, 50%)`;
+//   };
+
+
+//   for (let i = 0; i < third; i++) {
+//     if (i < third * solidRatio) {
+//       colors.push(getColor(0, 0, 0));
+//     } else {
+//       const ratio = (i - third * solidRatio) / (third * gradientRatio);
+//       colors.push(getColor(0, 60, ratio));
+//     }
+//   }
+
+//   for (let i = 0; i < third; i++) {
+//     if (i < third * solidRatio) {
+//       colors.push(getColor(60, 60, 0));
+//     } else {
+//       const ratio = (i - third * solidRatio) / (third * gradientRatio);
+//       colors.push(getColor(60, 120, ratio));
+//     }
+//   }
+
+//   for (let i = 0; i < third; i++) {
+//     if (i < third * solidRatio) {
+//       colors.push(getColor(120, 120, 0));
+//     } else {
+//       const ratio = (i - third * solidRatio) / (third * gradientRatio);
+//       colors.push(getColor(120, 120, ratio));
+//     }
+//   }
+
+//   if (remainder > 0) {
+//     for (let i = 0; i < remainder; i++) {
+//       const ratio = i / remainder;
+//       if (i < remainder / 2) {
+//         colors.push(getColor(0, 60, ratio));
+//       } else {
+//         colors.push(getColor(60, 120, ratio));
+//       }
+//     }
+//   }
+
+//   return colors;
+// };
+
+//muito gradiente
 const generateColors = (numColors) => {
   const colors = [];
-  const third = Math.floor(numColors / 3);
-  const remainder = numColors % 3;
+  const steps = numColors;
 
-  const getColor = (start, end, ratio, lightness = 50) => {
-    const hue = start + (end - start) * ratio;
-    return `hsl(${hue}, 100%, ${lightness}%)`;
+  // Função para interpolação de cor
+  const interpolateColor = (startColor, endColor, factor) => {
+    const result = startColor.map((start, i) =>
+      Math.round(start + factor * (endColor[i] - start))
+    );
+    return `rgb(${result.join(',')})`;
   };
 
-  const solidRatio = 0.7;
-  const gradientRatio = 0.2;
+  // Defina as cores de início e fim para os gradientes
+  const red = [255, 0, 0]; // Vermelho
+  const yellow = [255, 255, 0]; // Amarelo
+  const green = [0, 255, 0]; // Verde
 
-  for (let i = 0; i < third; i++) {
-    if (i < third * solidRatio) {
-      colors.push(getColor(0, 0, 0));
+  for (let i = 0; i < steps; i++) {
+    let color;
+    if (i < steps / 2) {
+      // Gradiente entre vermelho e amarelo
+      const factor = i / (steps / 2);
+      color = interpolateColor(red, yellow, factor);
     } else {
-      const ratio = (i - third * solidRatio) / (third * gradientRatio);
-      colors.push(getColor(0, 60, ratio));
+      // Gradiente entre amarelo e verde
+      const factor = (i - steps / 2) / (steps / 2);
+      color = interpolateColor(yellow, green, factor);
     }
-  }
-
-
-  for (let i = 0; i < third; i++) {
-    if (i < third * solidRatio) {
-      colors.push(getColor(60, 60, 0));
-    } else {
-      const ratio = (i - third * solidRatio) / (third * gradientRatio);
-      colors.push(getColor(60, 120, ratio));
-    }
-  }
-
-  for (let i = 0; i < third; i++) {
-    if (i < third * solidRatio) {
-      colors.push(getColor(120, 120, 0, 40)); 
-    } else {
-      const ratio = (i - third * solidRatio) / (third * gradientRatio);
-      colors.push(getColor(120, 0, ratio));
-    }
-  }
-
-  if (remainder > 0) {
-    for (let i = 0; i < remainder; i++) {
-      if (i < remainder / 3) {
-        const ratio = i / (remainder / 3);
-        colors.push(getColor(0, 60, ratio));
-      } else if (i < 2 * remainder / 3) {
-        const ratio = (i - remainder / 3) / (remainder / 3);
-        colors.push(getColor(60, 120, ratio));
-      } else {
-        const ratio = (i - 2 * remainder / 3) / (remainder / 3);
-        colors.push(getColor(120, 0, ratio));
-      }
-    }
+    colors.push(color);
   }
 
   return colors;
