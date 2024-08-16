@@ -119,6 +119,14 @@ img {
     opacity: 1;
 }
 
+.close {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 25px;
+    cursor: pointer;
+}
+
 .fade-in {
     animation: fadeIn 1s;
 }
@@ -137,11 +145,26 @@ img {
     font-size: 12px;
 }
 
+.separator {
+    bottom: 30px;
+    border-top: 2px solid #000000; /* Linha de separação com 2px de espessura */
+    width: 100%; /* Garante que a linha ocupe toda a largura do modal */
+    position: relative; /* Ajusta o posicionamento se necessário */
+}
+
+#btn-remover {
+    font-size: 14px;
+    position: absolute;
+    left: 19em;
+    bottom: 18px;
+}
+
 #modalResult {
-    padding: 30px;
+    padding: 40px;
     text-align: center;
     font-size: 30px;
 }
+
 
 textarea {
     border: 1px solid #5f5d5d !important;

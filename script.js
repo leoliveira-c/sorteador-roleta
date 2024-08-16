@@ -168,6 +168,24 @@ const getRandomDegree = (numSegments) => {
   return randomDegree;
 };
 
+document.getElementById('btn-remover').addEventListener('click', () => {
+
+  const modalResultText = document.getElementById('modalResult').innerText;
+  const selectedName = modalResultText.replace('O resultado foi: ', '').trim();
+
+  if (selectedName) {
+    const labelsInput = document.getElementById('labelsInput');
+    let labels = labelsInput.value.split(',').map(label => label.trim());
+
+    labels = labels.filter(label => label !== selectedName);
+
+    labelsInput.value = labels.join(', ');
+
+    atualizarGrafico();
+  }
+});
+
+
 const spinWheel = () => {
   spinBtn.disabled = true;
   const numSegments = myChart.data.labels.length;
