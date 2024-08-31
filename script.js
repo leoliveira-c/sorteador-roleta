@@ -70,63 +70,6 @@ const createChart = (labels, data, colors) => {
   });
 };
 
-//pouco gradiente
-// const generateColors = (numColors) => {
-//   const colors = [];
-
-//   const gradientRatio = 0.3;
-//   const solidRatio = 1 - gradientRatio;
-//   const third = Math.floor(numColors / 3);
-//   const remainder = numColors % 3;
-
-//   const getColor = (start, end, ratio) => {
-//     const hue = start + (end - start) * ratio;
-//     return `hsl(${hue}, 100%, 50%)`;
-//   };
-
-
-//   for (let i = 0; i < third; i++) {
-//     if (i < third * solidRatio) {
-//       colors.push(getColor(0, 0, 0));
-//     } else {
-//       const ratio = (i - third * solidRatio) / (third * gradientRatio);
-//       colors.push(getColor(0, 60, ratio));
-//     }
-//   }
-
-//   for (let i = 0; i < third; i++) {
-//     if (i < third * solidRatio) {
-//       colors.push(getColor(60, 60, 0));
-//     } else {
-//       const ratio = (i - third * solidRatio) / (third * gradientRatio);
-//       colors.push(getColor(60, 120, ratio));
-//     }
-//   }
-
-//   for (let i = 0; i < third; i++) {
-//     if (i < third * solidRatio) {
-//       colors.push(getColor(120, 120, 0));
-//     } else {
-//       const ratio = (i - third * solidRatio) / (third * gradientRatio);
-//       colors.push(getColor(120, 120, ratio));
-//     }
-//   }
-
-//   if (remainder > 0) {
-//     for (let i = 0; i < remainder; i++) {
-//       const ratio = i / remainder;
-//       if (i < remainder / 2) {
-//         colors.push(getColor(0, 60, ratio));
-//       } else {
-//         colors.push(getColor(60, 120, ratio));
-//       }
-//     }
-//   }
-
-//   return colors;
-// };
-
-//muito gradiente
 const generateColors = (numColors) => {
   const colors = [];
   const steps = numColors;
@@ -231,7 +174,7 @@ spinBtn.addEventListener("click", spinWheel);
 
 const atualizarGrafico = () => {
   const labelsInput = document.getElementById("labelsInput").value;
-  const labels = labelsInput.split(",").map(label => label.trim());
+  const labels = labelsInput.split("\n").map(label => label.trim());
   const data = Array(labels.length).fill(100 / labels.length);
   const colors = generateColors(labels.length);
   createChart(labels, data, colors);
